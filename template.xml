@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>IPTVBoss</Name>
+  <Repository>ghcr.io/groenator/iptvboss-docker:latest</Repository>
+  <Registry>https://github.com/groenator/iptvboss-docker/pkgs/container/iptvboss-docker</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/groenator/iptvboss-docker/issues</Support>
+  <Project>https://github.com/groenator/iptvboss-docker</Project>
+  <Overview><![CDATA[
+    <h2>IPTVBoss</h2>
+    <p>IPTVBoss is an application designed to manage your IPTV playlists effectively. This Docker container allows you to run IPTVBoss seamlessly on your Unraid server.</p>
+    <p><a href="https://github.com/groenator/iptvboss-docker">GitHub Repository</a></p>
+  ]]></Overview>
+  <Category>MediaServer:MediaApplications</Category>
+  <WebUI>http://[IP]:[PORT:6901]</WebUI>
+  <Icon>https://raw.githubusercontent.com/your-github-username/unraid-iptvboss-template/main/icons/iptvboss.png</Icon>
+
+  <!-- Ports -->
+  <Config Name="VNC WebUI Port" Target="6901" Default="6901" Mode="tcp" Description="Port for the VNC web interface." Type="Port" Required="true"/>
+  <Config Name="VNC Port" Target="5901" Default="5901" Mode="tcp" Description="Port for the VNC server." Type="Port" Required="false"/>
+  <Config Name="XC Server Port" Target="8001" Default="8001" Mode="tcp" Description="Port for the XC Server." Type="Port" Required="false"/>
+
+  <!-- Volume Mappings -->
+  <Config Name="IPTVBoss Data" Target="/headless/IPTVBoss" Default="/mnt/user/appdata/iptvboss" Mode="rw" Description="Path to store IPTVBoss data." Type="Path" Required="true"/>
+
+  <!-- Environment Variables -->
+  <Config Name="PUID" Target="PUID" Default="99" Description="User ID for permissions." Type="Variable" Required="true"/>
+  <Config Name="PGID" Target="PGID" Default="100" Description="Group ID for permissions." Type="Variable" Required="true"/>
+  <Config Name="Timezone" Target="TZ" Default="UTC" Description="Set the timezone for the container." Type="Variable" Required="true"/>
+  <Config Name="Cron Schedule" Target="CRON_SCHEDULE" Default="0 0 * * *" Description="Cron schedule for updating EPG data." Type="Variable" Required="false"/>
+  <Config Name="XC Server" Target="XC_SERVER" Default="false" Description="Set to true to start the XC server on boot." Type="Variable" Required="false"/>
+</Container>
